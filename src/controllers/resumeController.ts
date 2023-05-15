@@ -24,9 +24,18 @@ export const addResume: RequestHandler = async (req, res, next) => {
 
     const newResume: IResume = new Resume({
         //Add resume model data
-        // name: req.body.name,
-        // description: req.body.description,
-        // price: req.body.price
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        title: req.body.title,
+        address: req.body.address,
+        phone: req.body.phone,
+        email: req.body.email,
+        skills: req.body.skills,
+        job: req.body.job,
+        project: req.body.project,
+        education: req.body.education,
+        certifrication: req.body.certifrication
+
     });
 
     try {
@@ -48,10 +57,19 @@ export const editResume: RequestHandler = async (req, res, next) => {
     let itemId = req.params.id;
     const updatedResume: IResume = new Resume({
         // Add resume model data
-        // _id: itemId,
-        // name: req.body.name,
-        // description: req.body.description,
-        // price: req.body.price
+         _id: itemId,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        title: req.body.title,
+        address: req.body.address,
+        phone: req.body.phone,
+        email: req.body.email,
+        skills: req.body.skills,
+        job: req.body.job,
+        project: req.body.project,
+        education: req.body.education,
+        certifrication: req.body.certifrication
+
     });
 
     await Resume.findByIdAndUpdate(itemId, { $set: updatedResume })
