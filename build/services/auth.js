@@ -19,14 +19,17 @@ const comparePasswords = async (plainTextPassword, hashPassword) => {
 };
 exports.comparePasswords = comparePasswords;
 const signUserToken = async (user) => {
-    let token = jsonwebtoken_1.default.sign({ userId: user._id }, secret, { expiresIn: '1hr' });
+    let token = jsonwebtoken_1.default.sign({ userId: user._id }, secret, { expiresIn: '3hr' });
     return token;
 };
 exports.signUserToken = signUserToken;
-const verifyUser = async (req) => {
+const verifyUser = async (req, res, next) => {
+    // Get the authorization header from the request
     const authHeader = req.headers.authorization;
+    // If header exists, parse token from `Bearer <token>`
     if (authHeader) {
         const token = authHeader.split(' ')[1];
+        // Verify the token and get the user
         try {
             let decoded = await jsonwebtoken_1.default.verify(token, secret);
             return await user_1.User.findById(decoded.userId);

@@ -1,28 +1,25 @@
-import { RequestHandler } from "express";
-import { Resume, IResume } from "../models/resume";
-import { IUser } from "../models/user";
-import { verifyUser } from "../services/auth";
-
-
-export const getAllResumes: RequestHandler = async (req, res, next) => {
-    let resumeList = await Resume.find();
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deleteResume = exports.editResume = exports.addResume = exports.getOneResume = exports.getAllResumes = void 0;
+const resume_1 = require("../models/resume");
+const auth_1 = require("../services/auth");
+const getAllResumes = async (req, res, next) => {
+    let resumeList = await resume_1.Resume.find();
     res.status(200).json(resumeList);
-}
-
-export const getOneResume: RequestHandler = async (req, res, next) => {
+};
+exports.getAllResumes = getAllResumes;
+const getOneResume = async (req, res, next) => {
     let itemId = req.params.id;
-    let resume = await Resume.findById(itemId);
+    let resume = await resume_1.Resume.findById(itemId);
     res.status(200).json(resume);
-}
-
-export const addResume: RequestHandler = async (req, res, next) => {
-    let user: IUser | null = await verifyUser(req, res, next);
-
+};
+exports.getOneResume = getOneResume;
+const addResume = async (req, res, next) => {
+    let user = await (0, auth_1.verifyUser)(req, res, next);
     if (!user) {
         return res.status(403).send();
     }
-
-    const newResume: IResume = new Resume({
+    const newResume = new resume_1.Resume({
         //Add resume model data
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -35,9 +32,7 @@ export const addResume: RequestHandler = async (req, res, next) => {
         project: req.body.project,
         education: req.body.education,
         certification: req.body.certification
-
     });
-
     try {
         await newResume.save();
         res.status(201).json(newResume);
@@ -45,19 +40,17 @@ export const addResume: RequestHandler = async (req, res, next) => {
     catch (err) {
         res.status(500).send(err);
     }
-}
-
-export const editResume: RequestHandler = async (req, res, next) => {
-    let user: IUser | null = await verifyUser(req, res, next);
-
+};
+exports.addResume = addResume;
+const editResume = async (req, res, next) => {
+    let user = await (0, auth_1.verifyUser)(req, res, next);
     if (!user) {
         return res.status(403).send();
     }
-
     let itemId = req.params.id;
-    const updatedResume: IResume = new Resume({
+    const updatedResume = new resume_1.Resume({
         // Add resume model data
-         _id: itemId,
+        _id: itemId,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         title: req.body.title,
@@ -69,22 +62,18 @@ export const editResume: RequestHandler = async (req, res, next) => {
         project: req.body.project,
         education: req.body.education,
         certification: req.body.certification
-
     });
-
-    await Resume.findByIdAndUpdate(itemId, { $set: updatedResume })
-
+    await resume_1.Resume.findByIdAndUpdate(itemId, { $set: updatedResume });
     res.status(200).json(updatedResume);
-}
-
-export const deleteResume: RequestHandler = async (req, res, next) => {
-    let user: IUser | null = await verifyUser(req, res, next);
-
+};
+exports.editResume = editResume;
+const deleteResume = async (req, res, next) => {
+    let user = await (0, auth_1.verifyUser)(req, res, next);
     if (!user) {
         return res.status(403).send();
     }
-
     let itemId = req.params.id;
-    let result = await Resume.findByIdAndDelete(itemId);
+    let result = await resume_1.Resume.findByIdAndDelete(itemId);
     res.status(200).json(result);
-}
+};
+exports.deleteResume = deleteResume;

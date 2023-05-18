@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { Request } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { IUser, User } from '../models/user';
 
@@ -19,16 +19,16 @@ export const signUserToken = async (user: IUser) => {
     let token = jwt.sign(
         { userId: user._id },
         secret,
-        { expiresIn: '1hr' }
+        { expiresIn: '3hr' }
     );
     return token;
 }
 
-export const verifyUser = async (req: Request) => {
+export const verifyUser = async (req: Request, res: Response, next: NextFunction) => {
     // Get the authorization header from the request
     const authHeader = req.headers.authorization;
 
-    // If header exists, parse token from `Bearer <token>`
+        // If header exists, parse token from `Bearer <token>`
     if (authHeader) {
         const token = authHeader.split(' ')[1];
 
@@ -44,4 +44,5 @@ export const verifyUser = async (req: Request) => {
     else {
         return null;
     }
-}
+};
+        
