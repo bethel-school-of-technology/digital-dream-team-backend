@@ -1,24 +1,12 @@
-import { Document, Schema, Model, model } from 'mongoose';
-
-interface IResume extends Document {
-   firstName: string;
-   lastName: string;
-   title: string;
-   address: string;
-   phone: string; 
-   email: string;
-   skills : string;
-   job: string;
-   project: string; 
-   education: string;
-   certification: string;
-}
-
-const resumeSchema: Schema = new Schema({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Resume = void 0;
+const mongoose_1 = require("mongoose");
+const resumeSchema = new mongoose_1.Schema({
     firstName: {
         type: String,
         required: true
-    }, 
+    },
     lastName: {
         type: String,
         required: true
@@ -54,14 +42,11 @@ const resumeSchema: Schema = new Schema({
     education: {
         type: String,
         required: true
-    }, 
+    },
     certification: {
         type: String,
         required: true
     }
-
 });
-
-const Resume: Model<IResume> = model('Resume', resumeSchema);
-
-export { IResume, Resume };
+const Resume = (0, mongoose_1.model)('Resume', resumeSchema);
+exports.Resume = Resume;
