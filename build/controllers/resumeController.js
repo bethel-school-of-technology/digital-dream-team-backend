@@ -4,11 +4,19 @@ exports.deleteResume = exports.editResume = exports.addResume = exports.getOneRe
 const resume_1 = require("../models/resume");
 const auth_1 = require("../services/auth");
 const getAllResumes = async (req, res, next) => {
-    let resumeList = await resume_1.Resume.find();
+    let user = await (0, auth_1.verifyUser)(req, res, next);
+    if (!user) {
+        return res.status(403).send();
+    }
+    let resumeList = await resume_1.Resume.find({ userId: user.id }).exec();
     res.status(200).json(resumeList);
 };
 exports.getAllResumes = getAllResumes;
 const getOneResume = async (req, res, next) => {
+    let user = await (0, auth_1.verifyUser)(req, res, next);
+    if (!user) {
+        return res.status(403).send();
+    }
     let itemId = req.params.id;
     let resume = await resume_1.Resume.findById(itemId);
     res.status(200).json(resume);
@@ -31,7 +39,8 @@ const addResume = async (req, res, next) => {
         job: req.body.job,
         project: req.body.project,
         education: req.body.education,
-        certification: req.body.certification
+        certification: req.body.certification,
+        userId: user.id,
     });
     try {
         await newResume.save();
@@ -61,7 +70,8 @@ const editResume = async (req, res, next) => {
         job: req.body.job,
         project: req.body.project,
         education: req.body.education,
-        certification: req.body.certification
+        certification: req.body.certification,
+        userId: user.id,
     });
     await resume_1.Resume.findByIdAndUpdate(itemId, { $set: updatedResume });
     res.status(200).json(updatedResume);

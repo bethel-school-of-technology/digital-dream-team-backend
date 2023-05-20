@@ -46,6 +46,11 @@ const resumeSchema = new mongoose_1.Schema({
     certification: {
         type: String,
         required: true
+    },
+    userId: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 });
 const Resume = (0, mongoose_1.model)('Resume', resumeSchema);
