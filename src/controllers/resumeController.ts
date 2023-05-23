@@ -5,11 +5,21 @@ import { verifyUser } from "../services/auth";
 
 
 export const getAllResumes: RequestHandler = async (req, res, next) => {
-    let resumeList = await Resume.find();
+    let user: IUser | null = await verifyUser(req, res, next);
+
+    if (!user) {
+        return res.status(403).send();
+    }
+    let resumeList = await Resume.find({userId: user.id}).exec()
     res.status(200).json(resumeList);
 }
 
 export const getOneResume: RequestHandler = async (req, res, next) => {
+    let user: IUser | null = await verifyUser(req, res, next);
+    
+    if (!user) {
+        return res.status(403).send();
+    }
     let itemId = req.params.id;
     let resume = await Resume.findById(itemId);
     res.status(200).json(resume);
@@ -34,8 +44,8 @@ export const addResume: RequestHandler = async (req, res, next) => {
         job: req.body.job,
         project: req.body.project,
         education: req.body.education,
-        certification: req.body.certification
-
+        certification: req.body.certification,
+        userId: user.id,
     });
 
     try {
@@ -68,8 +78,8 @@ export const editResume: RequestHandler = async (req, res, next) => {
         job: req.body.job,
         project: req.body.project,
         education: req.body.education,
-        certification: req.body.certification
-
+        certification: req.body.certification,
+        userId: user.id,
     });
 
     await Resume.findByIdAndUpdate(itemId, { $set: updatedResume })

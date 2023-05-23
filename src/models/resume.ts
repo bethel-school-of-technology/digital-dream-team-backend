@@ -1,4 +1,5 @@
 import { Document, Schema, Model, model } from 'mongoose';
+import { IUser } from './user';
 
 interface IResume extends Document {
    firstName: string;
@@ -12,6 +13,7 @@ interface IResume extends Document {
    project: string; 
    education: string;
    certification: string;
+   userId: IUser['_id'];
 }
 
 const resumeSchema: Schema = new Schema({
@@ -58,8 +60,12 @@ const resumeSchema: Schema = new Schema({
     certification: {
         type: String,
         required: true
+    },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
-
 });
 
 const Resume: Model<IResume> = model('Resume', resumeSchema);
