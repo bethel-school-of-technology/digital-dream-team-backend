@@ -24,4 +24,6 @@ router.delete('/:id', resumeController_1.deleteResume, auth_1.verifyUser, (req, 
     const userId = req.body.userId;
     res.json({ message: 'Protected route accessed!', userId });
 });
+router.post('/generate', resumeController_1.apiCall, (req, res) => {
+});
 exports.default = router;

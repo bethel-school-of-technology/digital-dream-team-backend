@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import resumeRoutes from './routes/resumeRoutes';
 import userRoutes from './routes/userRoutes';
 import mongoose from 'mongoose';
+require('dotenv').config()
 
 const connectionString: string = 'mongodb://127.0.0.1:27017/resumeDB';
 

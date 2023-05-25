@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { addResume, editResume, deleteResume, getAllResumes, getOneResume } from '../controllers/resumeController';
+import { addResume, editResume, deleteResume, getAllResumes, getOneResume, apiCall } from '../controllers/resumeController';
 import { verifyUser } from '../services/auth';
 import { Request, Response } from 'express';
 
@@ -24,6 +24,10 @@ router.put('/:id', editResume, verifyUser, (req: Request, res: Response) => {
 router.delete('/:id', deleteResume, verifyUser, (req: Request, res: Response) => {
     const userId = req.body.userId;
     res.json({ message: 'Protected route accessed!', userId});
+});
+
+router.post('/generate', apiCall, (req: Request, res: Response) => {
+
 });
 
 export default router;
