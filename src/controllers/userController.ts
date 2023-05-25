@@ -47,3 +47,18 @@ export const loginUser: RequestHandler = async (req, res, next) => {
         res.status(401).json('Invalid username');
     }
 }
+
+export const getUser: RequestHandler = async (req, res, next) => {
+    let user: IUser | null = await verifyUser(req, res, next);
+
+    if(user) {
+        let { _id, username } = user;
+        res.status(200).json({
+            _id,
+            username
+        });
+    }
+    else {
+        res.status(401).send();
+    }
+}
