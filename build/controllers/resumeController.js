@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteResume = exports.editResume = exports.addResume = exports.getOneResume = exports.getAllResumes = void 0;
+exports.apiCall = exports.deleteResume = exports.editResume = exports.addResume = exports.getOneResume = exports.getAllResumes = void 0;
 const resume_1 = require("../models/resume");
 const auth_1 = require("../services/auth");
+const openai_1 = require("openai");
 const getAllResumes = async (req, res, next) => {
     let user = await (0, auth_1.verifyUser)(req, res, next);
     if (!user) {
@@ -87,3 +88,31 @@ const deleteResume = async (req, res, next) => {
     res.status(200).json(result);
 };
 exports.deleteResume = deleteResume;
+const apiCall = async (req, res, next) => {
+    const configuration = new openai_1.Configuration({
+        apiKey: process.env.OPENAI_API_Key,
+    });
+    const openai = new openai_1.OpenAIApi(configuration);
+    let resume = req.body.resume;
+    let app = req.body.application;
+    if (app !== "" && resume !== "") {
+        try {
+            const response = await openai.createCompletion({
+                model: "text-davinci-003",
+                prompt: `You are a professional resume writer and are working to choose what information to include on a resume.\nThe following is a job application :\n{${app}}\n\nand the information for a resume \n{${resume}}\nout of this information what is most relevant to the job application. \nyou should always include at least 2 jobs, 2 projects, a degree and any relevent certifications. If there are fewer than required jobs, projects, degrees or certifications, leave blank those data.\noutput should be of the form {\n  \"identity\": { \"first\" : \"\", \"last\" : \"\", \"phone\" : \"\", \"title\" : \"\",\"email\" : \"\", \"linkedin\" : \"\"},\n  \"skills\" : [],\n  \"jobs\" : [ { \"title\" : \"\", \"company\": \"\", \"startdate\" : \"\", \"enddate\" : \"\",\"accomplishments\" : []}],\n  \"projects\" : [{ \"title\" : \"\", \"startdate\" : \"\", \"enddate\" : \"\",\"accomplishments\" : [] }],\n  \"educations\" : [{\"school\": \"\",\"degree\" : \"\", \"date\" : \"\"}],\n  \"certifications\" :[{ \"certification\" : \"\",\"provider\" : \"\",\"date\" : \"\"}]\n}\n`,
+                temperature: 0,
+                max_tokens: 1000,
+                top_p: 1,
+                frequency_penalty: 0,
+                presence_penalty: 0.6,
+            });
+            //respond with generated resume
+            res.status(200).json(response.data.choices[0]);
+        }
+        catch (err) {
+            console.log("Openai has thrown an error: ", err);
+        }
+    }
+    res.status(500).send("error, you shouldnt be seeing this");
+};
+exports.apiCall = apiCall;

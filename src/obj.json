@@ -1,0 +1,111 @@
+{"example" : {
+  "identity": {
+    "first" : "Daniel",
+    "last" : "schlee",
+    "title":"Full Stack Developer",
+    "address" : "123 test Blvd",
+    "phone" : "123-123-1234",
+    "email" : "daniel@gmail.com",
+    "portfolioSite" : "donal.tech",
+    "linkedin" : "https://www.linkedin.com/in/daniel/"
+  },
+  "skills" : [
+    "CSS", "React", "Javascript", "iOS Development",
+    "Swift", "Vim Motions", "Blender", "Unreal Engine", 
+    "C++", "Design Patterns", "Python", "Adobe Creative Suite",
+    "Figma"
+  ],
+  "jobs" : [
+    {
+      "title" : "Full Stack Developer",
+      "company": "apple",
+      "startdate" : "1/2/22",
+      "enddate" : "1/2/23",
+      "accomplishments" : ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."]
+    }, 
+    {
+      "title" : "Half Stack Developer",
+      "company": "dapple",
+      "startdate" : "1/2/22",
+      "enddate" : "1/2/23",
+      "accomplishments" : ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."]
+    }
+  ],
+  "projects" : [
+    { 
+      "title" : "Json proj",
+      "startdate" : "1/2/22",
+      "enddate" : "1/2/23",
+      "accomplishments" : ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."]
+    }, 
+    {
+      "title" : "React proj",
+      "startdate" : "1/2/22",
+      "enddate" : "1/2/23",
+      "accomplishments" : ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."]
+    }
+  ],
+  "educations" : [
+    {
+      "school": "UAA",
+      "degree" : "mech engr",
+      "date" : "exp 2026"
+    }
+  ],
+  "certifications" :[
+    {
+      "provider" : "AWS",
+      "certification" : "AWS Certified Practitioner",
+      "date" : "1/2/23"
+    }
+  ]
+},
+
+
+
+"empty":{
+  "identity": {
+    "first" : "",
+    "last" : "",
+    "address" : "",
+    "phone" : "",
+    "title" : "",
+    "email" : "",
+    "portfoliosite" : "",
+    "linkedin" : ""
+  },
+  "skills" : [
+  ],
+  "jobs" : [ 
+    {
+      "title" : "",
+      "company": "",
+      "startdate" : "",
+      "enddate" : "",
+      "accomplishments" : []
+    }
+  ],
+  "projects" : [
+    { 
+      "title" : "",
+      "startdate" : "",
+      "enddate" : "",
+      "accomplishments" : []
+    }
+  ],
+  "educations" : [
+    {
+      "school": "",
+      "degree" : "",
+      "date" : ""
+    }
+  ],
+  "certifications" :[
+    {
+      "certification" : "",
+      "provider" : "",
+      "date" : ""
+    }
+  ]
+}
+}

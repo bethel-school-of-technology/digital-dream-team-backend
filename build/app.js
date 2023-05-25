@@ -8,6 +8,7 @@ const morgan_1 = __importDefault(require("morgan"));
 const resumeRoutes_1 = __importDefault(require("./routes/resumeRoutes"));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const mongoose_1 = __importDefault(require("mongoose"));
+require('dotenv').config();
 const connectionString = 'mongodb://127.0.0.1:27017/resumeDB';
 mongoose_1.default.connect(connectionString).then(() => console.log('database connection successful!'), err => console.log('Error connecting to the database', err));
 const app = (0, express_1.default)();
