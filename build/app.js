@@ -24,4 +24,4 @@ app.use('/api/users', userRoutes_1.default);
 app.use((req, res, next) => {
     res.status(404).end();
 });
-app.listen(3000);
+app.listen(3001);

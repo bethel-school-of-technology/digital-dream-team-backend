@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginUser = exports.createUser = void 0;
+exports.getUser = exports.loginUser = exports.createUser = void 0;
 const user_1 = require("../models/user");
 const auth_1 = require("../services/auth");
 const createUser = async (req, res, next) => {
@@ -44,3 +44,17 @@ const loginUser = async (req, res, next) => {
     }
 };
 exports.loginUser = loginUser;
+const getUser = async (req, res, next) => {
+    let user = await (0, auth_1.verifyUser)(req, res, next);
+    if (user) {
+        let { _id, username } = user;
+        res.status(200).json({
+            _id,
+            username
+        });
+    }
+    else {
+        res.status(401).send();
+    }
+};
+exports.getUser = getUser;
