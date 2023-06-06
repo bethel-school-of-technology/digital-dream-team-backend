@@ -26,26 +26,29 @@ export const getOneResume: RequestHandler = async (req, res, next) => {
     res.status(200).json(resume);
 }
 
+//working
 export const addResume: RequestHandler = async (req, res, next) => {
     let user: IUser | null = await verifyUser(req, res, next);
 
     if (!user) {
         return res.status(403).send();
     }
+    //req.body is blank on first go around
 
+    let identity = req.body.identity //obj
+    let skills = req.body.skills //array
+    let jobs = req.body.jobs //[obj]
+    let projects = req.body.projects //[obj]
+    let educations = req.body.educations //[obj]
+    let certs = req.body.certifications //[obj]
     const newResume: IResume = new Resume({
         //Add resume model data
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        title: req.body.title,
-        address: req.body.address,
-        phone: req.body.phone,
-        email: req.body.email,
-        skills: req.body.skills,
-        job: req.body.job,
-        project: req.body.project,
-        education: req.body.education,
-        certification: req.body.certification,
+        identity: identity,
+        skills: skills,
+        jobs: jobs,
+        project: projects,
+        education: educations,
+        certification: certs,
         userId: user.id,
     });
 
@@ -54,6 +57,8 @@ export const addResume: RequestHandler = async (req, res, next) => {
         res.status(201).json(newResume);
     }
     catch (err) {
+
+        console.log(err)
         res.status(500).send(err);
     }
 }

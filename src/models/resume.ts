@@ -54,21 +54,21 @@ interface IResume extends Document {
 
 const resumeSchema: Schema = new Schema({
     identity: {
-        firstName: {
+        first: {
             type: String,
             required: true
         }, 
-        lastName: {
+        last: {
             type: String,
             required: true
         },
         title: {
             type: String,
-            required: true
+            required: false
         },
         address: {
             type: String,
-            required: true
+            required: false
         },
         phone: {
             type: String,
@@ -104,10 +104,10 @@ const resumeSchema: Schema = new Schema({
             type: String,
             required: false
         },
-        accomplishments: {
+        accomplishments: [{
             type: String,
             required: false
-        }
+        }]
     }],
     project: [{
         title: {
@@ -126,10 +126,10 @@ const resumeSchema: Schema = new Schema({
             type: String,
             required: false
         },
-        accomplishments: {
+        accomplishments: [{
             type: String,
             required: false
-        }
+        }]
     }],
     education: [{
         school: {
