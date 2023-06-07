@@ -3,50 +3,112 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Resume = void 0;
 const mongoose_1 = require("mongoose");
 const resumeSchema = new mongoose_1.Schema({
-    firstName: {
-        type: String,
-        required: true
+    identity: {
+        first: {
+            type: String,
+            required: true
+        },
+        last: {
+            type: String,
+            required: true
+        },
+        title: {
+            type: String,
+            required: false
+        },
+        address: {
+            type: String,
+            required: false
+        },
+        phone: {
+            type: String,
+            required: false
+        },
+        email: {
+            type: String,
+            required: true
+        },
+        linkedIn: {
+            type: String,
+            required: false
+        }
     },
-    lastName: {
-        type: String,
-        required: true
-    },
-    title: {
-        type: String,
-        required: true
-    },
-    address: {
-        type: String,
-        required: true
-    },
-    phone: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    skills: {
-        type: String,
-        required: true
-    },
-    job: {
-        type: String,
-        required: true
-    },
-    project: {
-        type: String,
-        required: true
-    },
-    education: {
-        type: String,
-        required: true
-    },
-    certification: {
-        type: String,
-        required: true
-    },
+    skills: [{
+            type: String,
+            required: false
+        }],
+    jobs: [{
+            title: {
+                type: String,
+                required: false
+            },
+            company: {
+                type: String,
+                required: false
+            },
+            start: {
+                type: String,
+                required: false
+            },
+            end: {
+                type: String,
+                required: false
+            },
+            accomplishments: [{
+                    type: String,
+                    required: false
+                }]
+        }],
+    project: [{
+            title: {
+                type: String,
+                required: false
+            },
+            company: {
+                type: String,
+                required: false
+            },
+            start: {
+                type: String,
+                required: false
+            },
+            end: {
+                type: String,
+                required: false
+            },
+            accomplishments: [{
+                    type: String,
+                    required: false
+                }]
+        }],
+    education: [{
+            school: {
+                type: String,
+                required: false
+            },
+            degree: {
+                type: String,
+                required: false
+            },
+            dateAcquired: {
+                type: String,
+                required: false
+            }
+        }],
+    certification: [{
+            certification: {
+                type: String,
+                required: false
+            },
+            provider: {
+                type: String,
+                required: false
+            },
+            dateAcquired: {
+                type: String,
+                required: false
+            }
+        }],
     userId: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'User',
