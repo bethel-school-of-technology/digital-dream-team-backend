@@ -72,7 +72,7 @@ const resumeSchema: Schema = new Schema({
         },
         phone: {
             type: String,
-            required: true
+            required: false
         },
         email: {
             type: String,

@@ -22,7 +22,7 @@ const resumeSchema = new mongoose_1.Schema({
         },
         phone: {
             type: String,
-            required: true
+            required: false
         },
         email: {
             type: String,
