@@ -8,7 +8,7 @@ interface Identity {
     address: string;
     phone: string;
     email: string;
-    linkedIn?: string;
+    linkedin?: string;
 }
 
 interface Skills {
@@ -18,28 +18,28 @@ interface Skills {
 interface Jobs {
     title?: string;
     company?: string;
-    start?: string;
-    end?: string;
+    startdate?: string;
+    enddate?: string;
     accomplishments?: string;
 }
 
 interface Projects {
     title?: string;
-    start?: string;
-    end?: string;
+    startdate?: string;
+    enddate?: string;
     accomplishments?: string;
 }
 
 interface Education {
     school?: string;
     degree?: string;
-    dateAcquired?: string;
+    date?: string;
 }
 
 interface Certifications {
     certification?: string;
     provider?: string;
-    dateAcquired?: string;
+    date?: string;
 }
 
 interface IResume extends Document {
@@ -78,7 +78,7 @@ const resumeSchema: Schema = new Schema({
             type: String,
             required: true
         },
-        linkedIn: {
+        linkedin: {
             type: String,
             required: false
         }
@@ -96,11 +96,11 @@ const resumeSchema: Schema = new Schema({
             type: String,
             required: false
         },
-        start: {
+        startdate: {
             type: String,
             required: false
         },
-        end: {
+        enddate: {
             type: String,
             required: false
         },
@@ -118,11 +118,11 @@ const resumeSchema: Schema = new Schema({
             type: String,
             required: false
         },
-        start: {
+        startdate: {
             type: String,
             required: false
         },
-        end: {
+        enddate: {
             type: String,
             required: false
         },
@@ -140,7 +140,7 @@ const resumeSchema: Schema = new Schema({
             type: String,
             required: false
         },
-        dateAcquired: {
+        date: {
             type: String,
             required: false
         }
@@ -154,7 +154,7 @@ const resumeSchema: Schema = new Schema({
             type: String,
             required: false
         },
-        dateAcquired: {
+        date: {
             type: String,
             required: false
         }
