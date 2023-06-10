@@ -28,7 +28,7 @@ const resumeSchema = new mongoose_1.Schema({
             type: String,
             required: true
         },
-        linkedIn: {
+        linkedin: {
             type: String,
             required: false
         }
@@ -46,11 +46,11 @@ const resumeSchema = new mongoose_1.Schema({
                 type: String,
                 required: false
             },
-            start: {
+            startdate: {
                 type: String,
                 required: false
             },
-            end: {
+            enddate: {
                 type: String,
                 required: false
             },
@@ -68,11 +68,11 @@ const resumeSchema = new mongoose_1.Schema({
                 type: String,
                 required: false
             },
-            start: {
+            startdate: {
                 type: String,
                 required: false
             },
-            end: {
+            enddate: {
                 type: String,
                 required: false
             },
@@ -90,7 +90,7 @@ const resumeSchema = new mongoose_1.Schema({
                 type: String,
                 required: false
             },
-            dateAcquired: {
+            date: {
                 type: String,
                 required: false
             }
@@ -104,7 +104,7 @@ const resumeSchema = new mongoose_1.Schema({
                 type: String,
                 required: false
             },
-            dateAcquired: {
+            date: {
                 type: String,
                 required: false
             }
